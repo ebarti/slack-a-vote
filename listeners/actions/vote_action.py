@@ -13,9 +13,10 @@ VOTE_MATCHER = re.compile(f"{VOTE_ACTION_PREFIX}_\\d+", re.IGNORECASE)
 def vote_action_callback(ack: Ack, client: WebClient, body: dict, respond: Respond, logger: Logger):
     try:
         ack()
-        respond(
+        answ = respond(
             blocks=get_updated_poll_blocks(client, body),
             replace_original=True
         )
+        print(answ)
     except Exception as e:
         logger.error(e)
