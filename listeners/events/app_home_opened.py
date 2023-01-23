@@ -31,7 +31,7 @@ def app_home_opened_callback(client, event, logger: Logger):
                                     "emoji": True
                                 },
                                 "style":     "primary",
-                                "value":     f"Go",
+                                "value":     "Create",
                                 "action_id": f"{CREATE_POLL_BUTTON_CALLBACK_ID}"
                             },
                             {
