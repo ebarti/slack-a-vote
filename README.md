@@ -85,11 +85,3 @@ All trigger configuration files live in here - currently empty.
 
 Used by the CLI to interact with the project's SDK dependencies. It contains
 script hooks that are executed by the CLI and implemented by the SDK.
-
-
-Env vars
-
-
-BASE_WORKSPACE_URL
-
-Notes - Company wide initiatives day
