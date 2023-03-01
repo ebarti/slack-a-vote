@@ -1,2 +1,2 @@
-slack-bolt==1.15.2.dev0
+slack-bolt==1.16.2
 pytest
