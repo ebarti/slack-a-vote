@@ -51,7 +51,7 @@ def get_updated_poll_blocks(client: WebClient, body: dict) -> List[Block]:
     for block in body["message"]["blocks"]:
         existent_blocks.append(Block.parse(block))
     for block in existent_blocks:
-        if block.block_id.endswith("_context") and block.type == ContextBlock.type:
+        if block.block_id and block.block_id.endswith("_context") and block.type == ContextBlock.type:
             elements = [ImageElement(image_url=user_img, alt_text=user_id)] if block.block_id == f"{action_id}_context" else []
             elements.extend([element for element in block.elements if element.type == ImageElement.type and element.image_url != user_img])
             text = f"{len(elements)} votes" if len(elements) > 1 else f"{len(elements)} vote"
