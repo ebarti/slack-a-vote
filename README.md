@@ -69,6 +69,11 @@ to send a message to a certain channel!
 
 To stop running locally, press `<CTRL> + C` to end the process.
 
+`app.py` uses Socket Mode with the CLI-provided bot and app tokens, so it does
+not require `SLACK_SIGNING_SECRET`. HTTP signature verification remains enabled
+when that secret is configured. The separate HTTP entrypoint, `app_oauth.py`,
+requires the signing secret and verifies incoming HTTP requests.
+
 ## Deploying
 Currently deploying to slack is not yet supported.
 

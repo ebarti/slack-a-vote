@@ -64,7 +64,7 @@ def test_default_start_hook_reaches_registered_app(monkeypatch):
     monkeypatch.setattr(SocketModeHandler, "start", lambda handler: started.append(handler))
     monkeypatch.setenv("SLACK_BOT_TOKEN", "xoxb-test-only")
     monkeypatch.setenv("SLACK_APP_TOKEN", "xapp-test-only")
-    monkeypatch.setenv("SLACK_SIGNING_SECRET", "signing-test-only")
+    monkeypatch.delenv("SLACK_SIGNING_SECRET", raising=False)
     monkeypatch.delenv("SLACK_APP_PATH", raising=False)
     monkeypatch.setattr(sys, "argv", ["slack_cli_hooks.hooks.start"])
     monkeypatch.chdir(ROOT)
@@ -73,4 +73,5 @@ def test_default_start_hook_reaches_registered_app(monkeypatch):
 
     auth_test.assert_called_once()
     assert len(started) == 1
+    assert started[0].app_token == "xapp-test-only"
     assert len(started[0].app._listeners) == 5
