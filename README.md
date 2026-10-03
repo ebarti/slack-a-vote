@@ -5,6 +5,9 @@ This is a poll/survey app that is built using the [next-gen developer platform](
 
 ## Setup
 
+Python 3.9 or later is required. The pinned `slack-cli-hooks` package provides
+the Slack CLI hooks and requires Bolt 1.18.0 or later.
+
 Before getting started, make sure you have a development workspace where you
 have permissions to install apps. If you don’t have one set up, go ahead and
 [create one](https://slack.com/create). Also, please note that the workspace
@@ -66,6 +69,11 @@ to send a message to a certain channel!
 
 To stop running locally, press `<CTRL> + C` to end the process.
 
+`app.py` uses Socket Mode with the CLI-provided bot and app tokens, so it does
+not require `SLACK_SIGNING_SECRET`. HTTP signature verification remains enabled
+when that secret is configured. The separate HTTP entrypoint, `app_oauth.py`,
+requires the signing secret and verifies incoming HTTP requests.
+
 ## Deploying
 Currently deploying to slack is not yet supported.
 
@@ -85,3 +93,6 @@ All trigger configuration files live in here - currently empty.
 
 Used by the CLI to interact with the project's SDK dependencies. It contains
 script hooks that are executed by the CLI and implemented by the SDK.
+The `get-hooks` command uses the official
+[Python Slack Hooks](https://github.com/slackapi/python-slack-hooks) package to
+discover the manifest and startup hooks. Its default startup hook runs `app.py`.
